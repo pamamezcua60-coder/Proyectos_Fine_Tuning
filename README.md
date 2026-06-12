@@ -129,6 +129,28 @@ Dataset (HF Hub)
 
 ## Resultados
 
+<p>
+  Gráfica de pérdida en comparación con el step del entrenamiento, las líneas rojas muestran la separación entre épocas. Se puede percibir que a pesar de los picos la gráfica es cada vez más decreciente conforme transcurre cada época.
+  
+  <img src="assets/Prediccion_precios1.png" width="60%">
+  <br><br>
+  
+  Gráfica y métricas de la predicción con el modelo base.
+  
+   <img src="assets/Prediccion_precios2.png" width="60%">
+   <br><br>
+   
+   Gráfica y métricas de la predicción con el modelo finetuneado. Note la mejora en la predicción.
+   
+  <img src="assets/Prediccion_precios3.png" width="60%">
+   <br><br>
+   
+   Gráfica y métricas de la predicción con el modelo finetuneado y mejorando la metodología de predicción (promedio ponderado de los tres tokens más probables)
+  
+  <img src="assets/Prediccion_precios4.png" width="60%">
+   
+</p>
+
 ## Qué aprendí:
 - Cuantizacion 4-bit no es trivial, configurar correctamente `bnb_4bit_quant_type="nf4"` redujo el uso de memoria ~3x sin impactar la convergencia, pero requiere entender la diferencia entre tipos de cuantizacion (nf4 vs fp4) y como `bfloat16` actua como tipo de computo intermedio. Así mismo de debe de analizar qué GPU utilizar según los requerimientos de memoria del modelo.
 - Elección de los hiperparámetros adecuados del entrenamiento, fundamental para determinar cuánto tiempo tardará en reentrenarse el modelo y en función de eso calcular el costo de las unidades computacionales requeridas para dicha tarea. Igualmente, como los tiempos de entrenamiento son largos, se debe preveer previamente la plataforma que será de utilidad para guardar cada cierto número de steps los entrenamientos de las matrices Loora.
